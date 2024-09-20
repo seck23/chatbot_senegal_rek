@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "builds":[
+        {
+            "src":"senegal_rek/app.py",
+            "use":"@vercel/python"
+        }
+
+    ],
+    "routes":[
+        {
+            "src":"/(.*)",
+            "dest":"senegal_rek/app.py"
+        }
+    ]
+}

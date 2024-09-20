@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c; /* Noir */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    height: 600px;
+    border: 1px solid #f4f4f4; /* Blanc */
+    border-radius: 10px;
+    background-color: #ffffff; /* Fond blanc */
+    overflow: hidden;
+}
+
+.chat-box {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #1c1c1c; /* Fond de la boîte de chat noir */
+    color: white; /* Texte en blanc */
+}
+
+.input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #ff6f00; /* Orange pour la barre d'entrée */
+}
+
+.input-container input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff; /* Fond de la zone de texte en blanc */
+    color: #1c1c1c; /* Texte noir */
+}
+
+.input-container button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #ff6f00; /* Bouton orange */
+    color: #ffffff; /* Texte du bouton en blanc */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-container button:hover {
+    background-color: #e65a00; /* Un orange plus foncé au survol */
+}
+
+.message-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Message de l'utilisateur */
+.user .message {
+    background-color: #ff6f00; /* Fond orange pour les messages de l'utilisateur */
+    color: #ffffff; /* Texte blanc */
+    align-self: flex-end;
+    text-align: right;
+    border-radius: 20px;
+    padding: 10px 20px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+/* Message du chatbot */
+.chatbot .message {
+    background-color: #ffffff; /* Fond blanc pour les messages du chatbot */
+    color: #1c1c1c; /* Texte noir */
+    align-self: flex-start;
+    border-radius: 20px;
+    padding: 10px 20px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.bot-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%; /* Icône ronde */
+    background-color: #ff6f00; /* Fond orange de l'icône du bot */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bot-icon img {
+    width: 20px;
+    height: 20px;
+}

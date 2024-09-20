@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Touristique Sénégal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <!-- Messages s'afficheront ici -->
+        </div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Tapez votre message..." />
+            <button onclick="sendMessage()">Envoyer</button>
+        </div>
+    </div>
+
+    <script>
+        function addMessageToChat(message, sender) {
+            const chatBox = document.getElementById('chat-box');
+            const messageWrapper = document.createElement('div');
+            messageWrapper.classList.add('message-wrapper', sender);
+            
+            if (sender === 'chatbot') {
+                // Ajouter l'icône du chatbot
+                const botIcon = document.createElement('img');
+                botIcon.src = "{{ url_for('static', filename='chatbot-icon.png') }}"; // Assurez-vous de placer cette image dans votre dossier static
+                botIcon.alt = "Chatbot";
+                botIcon.classList.add('bot-icon');
+                messageWrapper.appendChild(botIcon);
+            }
+
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.innerText = message;
+
+            messageWrapper.appendChild(messageElement);
+            chatBox.appendChild(messageWrapper);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll automatique vers le bas
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const message = userInput.value;
+            if (message.trim() !== "") {
+                addMessageToChat(message, 'user'); // Ajouter le message de l'utilisateur
+                userInput.value = ''; // Vider le champ de saisie
+                
+                // Envoyer la requête au serveur
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message, lang: 'fr' }), // Remplace 'fr' si nécessaire
+                })
+                .then(response => response.json())
+                .then(data => {
+                    addMessageToChat(data.response, 'chatbot'); // Ajouter la réponse du chatbot
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
